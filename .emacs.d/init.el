@@ -33,7 +33,7 @@
 ;; Melpa
 (require 'package)
 (add-to-list 'package-archives
-             '("melpa" . "https://melpa.milkbox.net/packages/") t)
+             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 ;--------------------------------------------------------------------------------
 
 (add-hook 'after-init-hook
