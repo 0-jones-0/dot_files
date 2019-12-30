@@ -96,7 +96,7 @@
   (setq neo-window-fixed-size nil)
   (setq neo-window-width 35)
   (add-hook 'neotree-mode-hook
-            (lambda () (with-current-buffer " *NeoTree"
+            (lambda () (with-current-buffer " *NeoTree*"
                          (setq-local linum-mode nil)))))
 
 (use-package eyebrowse
