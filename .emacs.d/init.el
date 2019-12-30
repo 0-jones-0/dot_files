@@ -1,3 +1,4 @@
+
 ;;;; Manual settings
 ;;smooth scrolling
 (setq scroll-step            1
@@ -38,16 +39,10 @@
 
 (add-hook 'after-init-hook
           (lambda ()
-            ;; THEME
-            (load-theme 'doom-spacegrey t)
-
             (global-set-key (kbd "C-c <left>")  'windmove-left)
             (global-set-key (kbd "C-c <right>") 'windmove-right)
             (global-set-key (kbd "C-c <up>")    'windmove-up)
             (global-set-key (kbd "C-c <down>")  'windmove-down)
-
-            ;; auto completion
-            (global-company-mode)
 
             ;; UI mods
             (global-linum-mode)
@@ -88,6 +83,10 @@
          ("C->" . mc/mark-next-like-this)
          ("C-<" . mc/mark-previous-like-this)
          ("C-c C-<" . mc/mark-all-like-this)))
+
+(use-package company
+  :ensure t
+  :config (global-company-mode))
 
 (use-package neotree
   :ensure t
@@ -153,6 +152,9 @@
 ;; ------------------------------
 ;; fuzzy matching
 
+(use-package counsel
+  :ensure t)
+
 (use-package ivy
   :ensure t
   :bind (("\C-s" . swiper)
@@ -182,8 +184,8 @@
 ;; ------------------------------
 ;; icon modifications
 
-;; (use-package all-the-icons
-;;   :ensure t)
+(use-package all-the-icons
+  :ensure t)
 
 ;; (use-package all-the-icons-ivy
 ;;   :ensure t
@@ -193,29 +195,20 @@
 
 
 ;; ------------------------------
-;; mode line setup
+;; theme and mode line setup
 
-;; (use-package spaceline
-;;   :demand t
-;;   :init
-;;   (setq powerline-default-separator 'slant)
-;;   :config
-;;   (require 'spaceline-config)
-;;   (spaceline-emacs-theme))
-
-;; (use-package spaceline-all-the-icons
-;;   :after spaceline
-;;   :config (spaceline-all-the-icons-theme)
-;;   (spaceline-all-the-icons--setup-anzu)
-;;   (spaceline-all-the-icons--setup-package-updates)
-;;   (spaceline-all-the-icons--setup-git-ahead))
-
-(use-package smart-mode-line
+(use-package doom-themes
+  :ensure t
+  :init (load-theme 'doom-one t)
   :config
-  (setq sml/theme 'respectful) ; powerline, dark, respectful
-  (sml/setup)
-  )
+  (doom-themes-neotree-config)
+  (setq doom-themes-enable-bold t
+        doom-themes-enable-italic t)
+  (doom-themes-visual-bell-config))
 
+(use-package doom-modeline
+  :ensure t
+  :hook (after-init . doom-modeline-mode))
 
 ;; ------------------------------
 ;; news reader
